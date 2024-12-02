@@ -1,5 +1,6 @@
 package orgr.rest;
 
+import orgr.model.Agenda;
 import orgr.model.Usuario;
 import orgr.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,20 @@ public class UsuarioRest {
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Endpoint para listar todos os agendamentos de um usuário
+    @GetMapping("/{id}/agendamentos")
+    public ResponseEntity<List<Agenda>> listarAgendamentos(@PathVariable Long id) {
+        try {
+            List<Agenda> agendamentos = usuarioServico.listarAgendamentosPorUsuario(id);
+            if (agendamentos.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return new ResponseEntity<>(agendamentos, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 }

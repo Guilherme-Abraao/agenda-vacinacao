@@ -1,6 +1,7 @@
 package orgr.servico.impl;
 
 import orgr.dao.UsuarioDAO;
+import orgr.model.Agenda;
 import orgr.model.Usuario;
 import orgr.servico.UsuarioServico;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,12 @@ public class UsuarioServicoImpl implements UsuarioServico {
     @Override
     public List<Usuario> listarUsuarios() {
         return usuarioDAO.findAll();
+    }
+
+    @Override
+    public List<Agenda> listarAgendamentosPorUsuario(Long id) {
+        Usuario usuario = usuarioDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
+        return usuario.getAgendas();
     }
 }

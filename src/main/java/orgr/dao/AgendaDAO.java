@@ -9,5 +9,6 @@ import java.util.List;
 public interface AgendaDAO extends JpaRepository<Agenda, Long> {
 
 
+    List<Agenda> findByUsuarioId(Long usuarioId);
 }
 

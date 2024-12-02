@@ -75,4 +75,32 @@ public class AgendaRest {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    // Endpoint para dar baixa como Realizada
+    @PutMapping("/{id}/realizar")
+    public ResponseEntity<Void> darBaixaRealizada(@PathVariable Long id) {
+        try {
+            agendaServico.darBaixaRealizada(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Endpoint para dar baixa como Cancelada
+    @PutMapping("/{id}/cancelar")
+    public ResponseEntity<Void> darBaixaCancelada(@PathVariable Long id) {
+        try {
+            agendaServico.darBaixaCancelada(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Endpoint para listar todas as agendas de um usuário pelo id
+    @GetMapping("/usuario/{usuarioId}")
+    public List<AgendaDTO> listarAgendasPorUsuario(@PathVariable Long usuarioId) {
+        return agendaServico.listarAgendasPorUsuarioId(usuarioId);
+    }
 }

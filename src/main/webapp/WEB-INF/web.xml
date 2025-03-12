@@ -1,0 +1,26 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>VacinaServlet</servlet-name>
+        <url-pattern>/static/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>servlets.Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>VacinaServlet</servlet-name>
+        <servlet-class>servlets.VacinaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VacinaServlet</servlet-name>
+        <url-pattern>/vacina</url-pattern>
+    </servlet-mapping>
+</web-app>
